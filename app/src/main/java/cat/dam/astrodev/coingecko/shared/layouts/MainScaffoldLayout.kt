@@ -9,11 +9,18 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
+import cat.dam.astrodev.coingecko.shared.composables.BottomNavigationBar
+import cat.dam.astrodev.coingecko.shared.composables.BottomNavigationItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScaffoldLayout(titleFactory: () -> String, content: @Composable () -> Unit) {
+fun MainScaffoldLayout(titleFactory: () -> String, navController: NavController, content: @Composable () -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -27,6 +34,19 @@ fun MainScaffoldLayout(titleFactory: () -> String, content: @Composable () -> Un
                         style = MaterialTheme.typography.headlineMedium
                     )
                 })
+        },
+        bottomBar = {
+            BottomNavigationBar(
+                homeClick = {
+                    navController.navigate("home")
+                },
+                listClick = {
+                    navController.navigate("coinList")
+                },
+                infoClick = {
+                    navController.navigate("info")
+                },
+            )
         }
     ) {
         Surface(modifier = Modifier.padding(it)) {
