@@ -11,6 +11,9 @@ import cat.dam.astrodev.coingecko.features.coins.services.CoingeckoService
 import java.lang.Exception
 
 class CoinListViewModel : ViewModel() {
+    companion object {
+        val instance = CoinListViewModel()
+    }
     var fetchingData by mutableStateOf(false)
         private set
     private val coingeckoService = CoingeckoService()
@@ -23,15 +26,14 @@ class CoinListViewModel : ViewModel() {
     suspend fun getNextPage() {
         try {
             fetchingData = true
-            val coinList = this.coingeckoService.getCoins(this.pageNumber, this.pageSize)
+            val coinList = this.coingeckoService.getCoins(this.pageSize, this.pageNumber)
             this.coinList.addAll(coinList)
-//            endReached = coinList.isEmpty()
-            this.pageNumber ++
+            endReached = coinList.isEmpty()
         } catch (e: Exception) {
             throw e
         } finally {
             fetchingData = false
         }
-
+        this.pageNumber ++
     }
 }

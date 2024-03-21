@@ -1,5 +1,6 @@
 package cat.dam.astrodev.coingecko.features.coins.screens.coinlist
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,12 +21,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import cat.dam.astrodev.coingecko.features.coins.composables.CoinCard
+import cat.dam.astrodev.coingecko.features.coins.screens.coinlist.viewmodels.CoinDetailsViewModel
 import cat.dam.astrodev.coingecko.features.coins.screens.coinlist.viewmodels.CoinListViewModel
 import kotlinx.coroutines.launch
 
 @Composable
 fun CoinList(navController: NavController) {
-    val coinListViewModel = viewModel<CoinListViewModel>()
+    val coinListViewModel = CoinListViewModel.instance
     val scope = rememberCoroutineScope()
 
 
@@ -33,6 +35,7 @@ fun CoinList(navController: NavController) {
         if (coinListViewModel.coinList.isEmpty() && !coinListViewModel.fetchingData && !coinListViewModel.endReached) {
             scope.launch {
                 coinListViewModel.getNextPage()
+                println("First coin: ${coinListViewModel.coinList[0].name}")
             }
         }
     }
@@ -50,7 +53,13 @@ fun CoinList(navController: NavController) {
             val coin = coinListViewModel.coinList[index]
             Row(
                 horizontalArrangement = Arrangement.Center,
-                modifier = Modifier.fillMaxWidth().padding(5.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(5.dp)
+                    .clickable {
+                        CoinDetailsViewModel.instance.id = coin.id
+                        // TODO navigate to details
+                    }
             ) {
                 CoinCard(coin)
             }
@@ -58,7 +67,8 @@ fun CoinList(navController: NavController) {
         item {
             if (coinListViewModel.fetchingData) {
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center
                 ) {
                     CircularProgressIndicator(

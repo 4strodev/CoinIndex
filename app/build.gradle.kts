@@ -80,4 +80,6 @@ dependencies {
     implementation("io.ktor:ktor-client-logging:$ktorVersion")
 
     implementation("com.airbnb.android:lottie-compose:6.4.0")
+
+    implementation("io.coil-kt:coil-compose:2.6.0")
 }

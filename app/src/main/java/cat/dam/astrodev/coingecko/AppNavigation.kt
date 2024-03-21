@@ -10,7 +10,7 @@ import cat.dam.astrodev.coingecko.shared.screens.Home
 
 @Composable
 fun AppNavigation(navHostController: NavHostController) {
-    NavHost(navController = navHostController, startDestination = "coinList") {
+    NavHost(navController = navHostController, startDestination = "home") {
         composable("home") {
             MainScaffoldLayout(titleFactory = {
                 "Home"

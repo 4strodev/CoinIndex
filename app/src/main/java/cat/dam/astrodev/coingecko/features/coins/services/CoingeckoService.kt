@@ -25,6 +25,7 @@ class CoingeckoService {
         val response = this.client.get("$BASE_URL/coins/markets") {
             url {
                 parameter("vs_currency", "eur")
+                parameter("order", "market_cap_desc")
                 parameter("per_page", perPage)
                 parameter("page", page)
             }
