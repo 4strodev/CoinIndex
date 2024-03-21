@@ -1,4 +1,4 @@
-package cat.dam.astrodev.coingecko.screens
+package cat.dam.astrodev.coingecko.shared.screens
 
 import androidx.compose.runtime.Composable
 

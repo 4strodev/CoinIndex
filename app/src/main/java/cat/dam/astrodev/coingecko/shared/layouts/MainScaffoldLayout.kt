@@ -1,4 +1,4 @@
-package cat.dam.astrodev.coingecko.layouts
+package cat.dam.astrodev.coingecko.shared.layouts
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
