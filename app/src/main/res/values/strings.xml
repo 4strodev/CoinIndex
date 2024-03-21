@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Coingecko</string>
+    <string name="txt_home_icon_description">Home icon</string>
+    <string name="txt_list_icon_description">List icon</string>
+    <string name="txt_info_icon_description">Information icon</string>
+    <string name="txt_exit">Exit</string>
+    <string name="txt_created_by">Created by</string>
+    <string name="txt_app_title">Coins Index</string>
+    <string name="txt_alejandro_marin">Alejandro Marin</string>
+    <string name="txt_about">About the app</string>
+    <string name="txt_app_description">This app allows you to visualize the most popular crypto currencies and their detailed data.</string>
 </resources>
